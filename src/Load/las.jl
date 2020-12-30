@@ -6,7 +6,7 @@ Read more than one file `.las` and extrapolate the LAR model and the color of ea
 function las2pointcloud(fnames::String...)::PointCloud
 	Vtot = Array{Float64,2}(undef, 3, 0)
 	rgbtot = Array{LasIO.N0f16,2}(undef, 3, 0)
-	for fname in fnames
+	Threads.@threads for fname in fnames
 		V = las2larpoints(fname)
 		rgb = las2color(fname)
 		Vtot = hcat(Vtot,V)
