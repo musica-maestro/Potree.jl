@@ -3,15 +3,6 @@ uuid = "9b6c4176-8955-4e0a-aabb-491b21eee98b"
 authors = ["Alessio Ferrato"]
 version = "0.1.0"
 
-[compat]
-julia = "1"
-
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-
-[targets]
-test = ["Test"]
-
 [deps]
 Common = "1e120bc2-2bd2-483a-9663-793997b3971f"
 DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
@@ -21,3 +12,13 @@ LasIO = "570499db-eae3-5eb6-bdd5-a5326f375e68"
 LazIO = "c3605908-9f0f-11e8-0a72-0d361c15a277"
 PlyIO = "42171d58-473b-503a-8d5f-782019eb09ec"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+
+[compat]
+PlyIO = "1.1"
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
