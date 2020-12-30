@@ -10,6 +10,7 @@ module Potree
     using DataStructures
     using Dates
     using Printf
+    using Distributed
 
     # util
     include("struct.jl")

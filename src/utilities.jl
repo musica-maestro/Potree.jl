@@ -37,8 +37,7 @@ In recursive mode, search all files with key in filename.
 function searchfile(path::String,key::String)
 	files = String[]
 	for (root, _, _) in walkdir(path)
-		thisfiles = filter(x->occursin(key,x), readdir(root,join=true))
-		union!(files,thisfiles)
+		union!(files, filter(x->occursin(key,x), readdir(root,join=true)))
 	end
 	return files
 end
