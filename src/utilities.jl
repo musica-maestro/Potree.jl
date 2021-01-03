@@ -92,18 +92,18 @@ function source2pc(source::String, lod::Union{Nothing,Int64})
 
 		if lod == -1
 			trie = potree2trie(source)
-			max_level = FileManager.max_depth(trie)
-			all_files = FileManager.get_all_values(trie)
-			PC = FileManager.las2pointcloud(all_files...)
+			max_level = Potree.max_depth(trie)
+			all_files = Potree.get_all_values(trie)
+			PC = Potree.las2pointcloud(all_files...)
 			return PC
 		else
-			all_files = FileManager.get_files_in_potree_folder(source,lod)
-			PC = FileManager.las2pointcloud(all_files...)
+			all_files = Potree.get_files_in_potree_folder(source,lod)
+			PC = Potree.las2pointcloud(all_files...)
 			return PC
 		end
 
 	elseif isfile(source) # se source è un file
-		PC = FileManager.las2pointcloud(source)
+		PC = Potree.las2pointcloud(source)
 		return PC
 	end
 

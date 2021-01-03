@@ -69,7 +69,7 @@ Return a collection of all values in trie.
 function get_all_values(trie::DataStructures.Trie{String})::Array{String,1}
 	key_s = collect(keys(trie))
 	data = Array{String,1}(undef,length(key_s))
-	for i in 1:length(key_s)
+	Threads.@threads for i in 1:length(key_s)
 		data[i] = trie[key_s[i]]
 	end
 	return data
