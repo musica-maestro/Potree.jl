@@ -20,14 +20,17 @@ PMall_files = @btime Potree.get_all_values($Ptrie)
 PPC = @btime Potree.las2pointcloud($PMall_files...)
 println("==============================================================================")
 
-#= trie = Potree.potree2trie(potree)
-all_files = Potree.get_all_values(trie)
-
-PC = Potree.las2pointcloud(all_files...)
 
 # point cloud
 GL.VIEW(
     [
-    Visualization.points_color_from_rgb(PC.coordinates,PC.rgbs)
+    Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
     ]
-) =#
+) 
+
+# point cloud
+GL.VIEW(
+    [
+    Visualization.points_color_from_rgb(FMPC.coordinates,FMPC.rgbs)
+    ]
+) 
