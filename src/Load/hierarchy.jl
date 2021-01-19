@@ -6,24 +6,26 @@ Trie data structures for Potree hierarchy:
  - first node is `r`, root of potree.
 """
 function potree2trie(potree::String)
-	#potree = path to potree folder project
 	metadata = CloudMetadata(potree) # metadata of potree
 	tree = joinpath(potree,metadata.octreeDir,"r") # path to octree files
-
 	trie = DataStructures.Trie{String}()
 
-	# search all files
-	if metadata.pointAttributes == "LAS"
+	# search all files, si potrebbe fare con un'unica function
+	if ( metadata.pointAttributes[1] == "LAS" )
 		files = searchfile(tree,".las")
-	elseif metadata.pointAttributes == "LAZ"
+	elseif ( metadata.pointAttributes[1] == "LAZ" )
 		files = searchfile(tree,".laz")
+	elseif ( metadata.pointAttributes[1] != "LAZ" )	# modo poco elegante di individuare != las/laz
+		println("Sono un bin")
+		files = searchfile(tree,".bin")
 	else
 		throw(DomainError(metadata.pointAttributes,"Format not yet allowed"))
 	end
 
 	# build trie from filename
 	for file in files
-		trie[rsplit(splitdir(file)[2],".")[1]] = file
+		name = rsplit(splitdir(file)[2],".")[1]
+		trie[name] = file
 	end
 
 	# root of potree
