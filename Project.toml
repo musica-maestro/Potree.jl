@@ -16,6 +16,7 @@ PlyIO = "42171d58-473b-503a-8d5f-782019eb09ec"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [compat]
+Documenter = "0.26"
 julia = "1"
 
 [extras]
