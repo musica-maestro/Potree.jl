@@ -6,7 +6,7 @@ Read more than one file `.las` and extrapolate the LAR model and the color of ea
 function las2pointcloud(fnames::String...)::PointCloud
 	Vtot = Array{Float64,2}(undef, 3, 0)
 	rgbtot = Array{LasIO.N0f16,2}(undef, 3, 0)
-	Threads.@threads for fname in fnames
+	for fname in fnames
 		V = las2larpoints(fname)
 		rgb = las2color(fname)
 		Vtot = hcat(Vtot,V)
@@ -37,11 +37,6 @@ Return LAS file's bounding box.
 function las2aabb(file::String)::AABB
 	header, p = read_LAS_LAZ(file)
 	#header = LasIO.read(fname, LasIO.LasHeader)
-	aabb = LasIO.boundingbox(header)
-	return AABB(aabb.xmax, aabb.xmin, aabb.ymax, aabb.ymin, aabb.zmax, aabb.zmin)
-end
-
-function las2aabb(header::LasHeader)::AABB
 	aabb = LasIO.boundingbox(header)
 	return AABB(aabb.xmax, aabb.xmin, aabb.ymax, aabb.ymin, aabb.zmax, aabb.zmin)
 end
@@ -101,6 +96,8 @@ function read_LAS_LAZ(fname::String)
 		header, laspoints = LasIO.FileIO.load(fname)
 	elseif endswith(fname,".laz")
 		header, laspoints = LazIO.load(fname)
+	else endswith(fname,".bin")
+		header, laspoints = load_bin(fname)
 	end
 	return header,laspoints
 end
