@@ -21,16 +21,16 @@ PPC = @btime Potree.las2pointcloud($PMall_files...)
 println("==============================================================================")
 
 
-# point cloud
-GL.VIEW(
-    [
-    Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
-    ]
-) 
+# # point cloud
+# GL.VIEW(
+#     [
+#     Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
+#     ]
+# ) 
 
-# point cloud
-GL.VIEW(
-    [
-    Visualization.points_color_from_rgb(FMPC.coordinates,FMPC.rgbs)
-    ]
-) 
+# # point cloud
+# GL.VIEW(
+#     [
+#     Visualization.points_color_from_rgb(FMPC.coordinates,FMPC.rgbs)
+#     ]
+# ) 
