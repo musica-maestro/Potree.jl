@@ -21,6 +21,7 @@ module Potree
     include("Load/hierarchy.jl")
     include("Load/json.jl")
     include("Load/las.jl")
+    include("Load/bin.jl")
 
     export potree2trie, las2pointcloud, DataStructures, LasIO, LazIO, JSON, getmodel, CloudMetadata,
     HEADER_SIZE, DATA_OFFSET, SIZE_DATARECORD
