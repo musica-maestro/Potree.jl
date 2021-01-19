@@ -59,7 +59,7 @@ struct CloudMetadata
     points::Int64
     boundingBox::AABB
     tightBoundingBox::AABB
-    pointAttributes::String
+    pointAttributes::Array{String, 1}
     spacing::Float64
     scale::Float64
     hierarchyStepSize::Int32
@@ -78,8 +78,20 @@ struct CloudMetadata
             dicttightBB = dict["tightBoundingBox"]
             boundingBox = AABB(dictAABB["ux"],dictAABB["lx"],dictAABB["uy"],dictAABB["ly"],dictAABB["uz"],dictAABB["lz"])
             tightBoundingBox = AABB(dicttightBB["ux"],dicttightBB["lx"],dicttightBB["uy"],dicttightBB["ly"],dicttightBB["uz"],dicttightBB["lz"])
+            
+            # enanched version for bin
+            
+            pointAttributes = String[]
 
-            pointAttributes = dict["pointAttributes"]
+            if( typeof(dict["pointAttributes"]) == String)
+                push!(pointAttributes, dict["pointAttributes"])
+            else
+                for i in dict["pointAttributes"]
+                    push!(pointAttributes, i)
+                end 
+            end
+
+
             spacing = dict["spacing"]
             scale = dict["scale"]
             hierarchyStepSize = dict["hierarchyStepSize"]
