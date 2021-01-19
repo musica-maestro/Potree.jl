@@ -20,7 +20,6 @@ PMall_files = @btime Potree.get_all_values($Ptrie)
 PPC = @btime Potree.las2pointcloud($PMall_files...)
 println("==============================================================================")
 
-
 # # point cloud
 # GL.VIEW(
 #     [

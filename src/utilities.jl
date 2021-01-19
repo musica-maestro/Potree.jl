@@ -37,14 +37,15 @@ In recursive mode, search all files with key in filename.
 function searchfile(path::String,key::String)
 	files = String[]
 	for (root, _, _) in walkdir(path)
-		union!(files, filter(x->occursin(key,x), readdir(root,join=true)))
+		thisfiles = filter(x->occursin(key,x), readdir(root,join=true))
+		union!(files,thisfiles)
 	end
 	return files
 end
 
 
 """
-create folder of prject
+create folder of project
 """
 function mkdir_project(folder::String, project_name::String)
 	@assert isdir(folder) "$folder not an existing folder"
