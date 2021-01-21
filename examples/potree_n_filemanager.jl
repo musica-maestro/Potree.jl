@@ -2,6 +2,8 @@ using Potree
 using FileManager 
 using Visualization
 
+
+
 # potree source folder
 potree = "C:/Users/Alessio/Documents/potreeDirectory/pointclouds/CAVA" # replace this path with local potree directory
 
@@ -18,25 +20,25 @@ PMall_files = Potree.get_all_values(Ptrie)
 PPC = Potree.las2pointcloud(PMall_files...)
 println("==============================================================================")
 
-println("1")
+println("FMtrie == Ptrie (Next line should be false)")
 println(FMtrie == Ptrie)
-println("2")
+println("FMall_files == PMall_files (Next line should be true)")
 println(FMall_files == PMall_files)
-println("3")
-println(FMPC == PPC)
+println("size(FMPC.coordinates) == size(PPC.coordinates) (Next line should be true)")
+println(size(FMPC.coordinates) == size(PPC.coordinates))
 
 
-# point cloud
-GL.VIEW(
-    [
-    Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
-    ]
-) 
+# # point cloud
+# GL.VIEW(
+#     [
+#     Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
+#     ]
+# ) 
 
 
-# point cloud
-GL.VIEW(
-    [
-    Visualization.points_color_from_rgb(FMPC.coordinates,FMPC.rgbs)
-    ]
-) 
+# # point cloud
+# GL.VIEW(
+#     [
+#     Visualization.points_color_from_rgb(FMPC.coordinates,FMPC.rgbs)
+#     ]
+# ) 
