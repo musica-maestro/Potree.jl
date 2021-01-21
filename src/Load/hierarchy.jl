@@ -16,7 +16,6 @@ function potree2trie(potree::String)
 	elseif ( metadata.pointAttributes[1] == "LAZ" )
 		files = searchfile(tree,".laz")
 	elseif ( metadata.pointAttributes[1] != "LAZ" )	# modo poco elegante di individuare != las/laz
-		println("Sono un bin")
 		files = searchfile(tree,".bin")
 	else
 		throw(DomainError(metadata.pointAttributes,"Format not yet allowed"))
