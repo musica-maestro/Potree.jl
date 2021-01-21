@@ -14,10 +14,12 @@ Ptrie = Potree.potree2trie(potree)
 println("searching files...")
 PMall_files = Potree.get_all_values(Ptrie)
 println("creating point cloud...")
-PPC = Potree.las2pointcloud(PMall_files...)
+#PPC = Potree.las2pointcloud(PMall_files...)
 
- GL.VIEW(
-      [
-      Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
-      ]
-  ) 
+println(size(PMall_files)[1] == 71)
+
+#  GL.VIEW(
+#       [
+#       Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
+#       ]
+#   ) 
