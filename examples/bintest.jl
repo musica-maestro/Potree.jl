@@ -1,6 +1,6 @@
 struct BinPC
-    positionCartesian::UInt32
-    sec::UInt8
+    positionCartesian::Array{Float32, 3}
+    colorPacked::Array{Int8, 4}
 end
 
 function Base.read(io::IO, ::Type{BinPC})
@@ -9,5 +9,6 @@ end
 
 fname = "C:/Users/Alessio/Documents/potreeDirectory/pointclouds/scale_1.7/data/r/r0.bin"
 
-f = open(fname)
-read(f, BinPC)
+appoggio = Array{Any, Any}
+read!(fname, appoggio)
+println(appoggio)

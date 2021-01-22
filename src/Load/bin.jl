@@ -1,3 +1,4 @@
-function load_bin(f::String; range::Union{UnitRange{T}, Integer, Colon, Array{T, 1}} where T <:Integer=:)
+function load_bin(f::String)
+
     header, pointdata
 end
