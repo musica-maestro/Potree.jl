@@ -44,7 +44,7 @@ boundingBoxMin = 1.4770147800445557
 scale = 0.001
 points = 357003 # total points of potree
 
-fname = "C:/Users/Alessio/Documents/potreeDirectory/pointclouds/scale_1.7/data/r/r0.bin"
+fname = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsLAS(v1.7)/data/r/r0.bin"
 data = Array{Float32, 1}(undef, 3)
 read!(fname, data)
 
@@ -54,7 +54,7 @@ for f in data
 end
 println(data)
 
-fname2 = "C:/Users/Alessio/Documents/potreeDirectory/pointclouds/scale_1.7/data/r/r.hrc"
+fname2 = "../potree/stairsBIN(v1.7)"
 
 io = open(fname2, "r")
 
@@ -71,4 +71,4 @@ for n in data2
     println(reinterpret(Int8, n))
 end
 
-println(Potree.readhrc(fname2))
+#println(Potree.readhrc(fname2))

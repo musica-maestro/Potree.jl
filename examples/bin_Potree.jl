@@ -7,7 +7,7 @@ using Profile
 println("Load done")
 
 # potree source folder
-potree = "C:/Users/Alessio/Documents/potreeDirectory/pointclouds/scale_1.7" # replace this path with local potree directory
+potree = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsBIN(v1.7)" # replace this path with local potree directory
 
 println("loading trie...")
 Ptrie = Potree.potree2trie(potree)
