@@ -1,5 +1,5 @@
 {
-    "version": "1.8",
+    "version": "1.7",
     "octreeDir": "data",
     "projection": "",
     "points": 357003,
