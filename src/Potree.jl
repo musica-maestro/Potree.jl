@@ -11,6 +11,7 @@ module Potree
     using Dates
     using Printf
     using Distributed
+    using PointClouds
     
     # util
     include("struct.jl")
