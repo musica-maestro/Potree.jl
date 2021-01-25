@@ -119,25 +119,22 @@ function get_files(trie::DataStructures.Trie{String}, LOD::Int, data=String[]::A
 	return data
 end
 
-# """
-# Read file .hrc of potree hierarchy.
-# """
-# function readhrc(potree::String)
+function readhrc(potree::String)
 
-# 	typeofpoints,scale,npoints,AABB,tightBB,octreeDir,hierarchyStepSize,spacing = PointClouds.readcloudJSON(potree) # useful parameters togli quelli che non usi
-# 	tree = joinpath(potree,octreeDir,"r") # path to directory "r"
-# 	hrcs = Potree.searchfile(tree,".hrc")
+	cloudmetadata = CloudMetadata(potree) # useful parameters togli quelli che non usi
+	tree = joinpath(potree,cloudmetadata.octreeDir,"r") # path to directory "r"
+	hrcs = searchfile(tree,".hrc")
 
-# 	for hrc in hrcs
-# 		raw = read(hrc)
-# 		treehrc = reshape(raw, (5, div(length(raw), 5)))
+	for hrc in hrcs
+		raw = read(hrc)
+		treehrc = reshape(raw, (5, div(length(raw), 5)))
 
-# 		for i in 1:size(treehrc,2)
-# 			children = bitstring(UInt8(treehrc[1,i]))
-# 			npoints = parse(Int, bitstring(UInt8(treehrc[5,i]))*bitstring(UInt8(treehrc[4,i]))*bitstring(UInt8(treehrc[3,i]))*bitstring(UInt8(treehrc[2,i])); base=2)
-# 			#struct da finire
-# 		end
-# 	end
+		for i in 1:size(treehrc,2)
+			children = bitstring(UInt8(treehrc[1,i]))
+			npoints = parse(Int, bitstring(UInt8(treehrc[5,i]))*bitstring(UInt8(treehrc[4,i]))*bitstring(UInt8(treehrc[3,i]))*bitstring(UInt8(treehrc[2,i])); base=2)
+			#struct da finire
+			@show children, npoints
+		end
+	end
 
-# 	return treehrc
-# end
+end
