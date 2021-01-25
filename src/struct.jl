@@ -112,3 +112,21 @@ struct CloudMetadata
     end
 
 end
+
+# struct potreeBin
+#     positionCartesian::Array{Float32, 3}
+#     colorPacked::Array{Int8, 4}
+#     #rgbPacked::Array{Int8, 3}
+#     #normalFloats::Array{Float32, 3}
+#     intensity::UInt16
+#     classification::UInt8
+#     #normalSphereMapped::Array{UInt8, 2}
+#     #normalOCT16::Array{UInt8, 2}
+#     #normal::Array{Float32, 3}
+#     #returnNumber::UInt8
+#     #numberOfReturns::UInt8
+#     #sourceID::UInt16
+#     #indices::UInt32
+#     #spacing::Float32
+#     #gpsTime::Float32 #should be Double
+# end
