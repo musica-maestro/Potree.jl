@@ -9,8 +9,10 @@ end
 
 
 """
+binToPointsUgly(fname::String) -> nothing
 
-First version of decoder
+First version of decoder doesn't return nothing. 
+It just shows the decoded points and Binary code for rgba
 """
 function binToPointsUgly(fname::String)
 	data = read(fname)
@@ -31,6 +33,11 @@ function binToPointsUgly(fname::String)
 	end
 end
 
+"""
+bin2points(fname::String) -> Array{Float64,2}(undef, 3, 0)
+
+Returns every point of the passed bin file.
+"""
 function bin2points(fname::String, cloud_metadata::CloudMetadata)
 	data = read(fname)
 
@@ -52,7 +59,12 @@ function bin2points(fname::String, cloud_metadata::CloudMetadata)
 	return allPoints
 end
 
+"""
+bin2rgb(fname::String) -> {LasIO.N0f16,2}(undef, 3, 0)
 
+(BUGGED RETURN) TODO: parse rgba to LasIO.N0f16
+"Should" return rgb(a) values of every point of the bin file.
+"""
 function bin2rgb(fname::String)
 	data = read(fname)
 
@@ -72,7 +84,10 @@ function bin2rgb(fname::String)
 end
 
 """
-bin2pointcloud
+bin2pointcloud(source::String) ->  Array{Float64,2}(undef, 3, 0)
+
+TODO: check bin2rgbs
+Returns a PointCloud without Point and Cloud... It's just an array of points
 """
 function bin2pointcloud(source::String)
 	
