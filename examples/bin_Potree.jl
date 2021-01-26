@@ -8,26 +8,41 @@ using DataStructures
 println("Load done")
 
 # potree source folder
-potree = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsBIN(v1.7)" # replace this path with local potree directory
+potreeBin = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsBIN(v1.7)" # replace this path with local potree directory
+potreeLas = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsLAS(v1.7)" # replace this path with local potree directory
 
-println("loading trie...")
-Ptrie = Potree.potree2trie(potree)
-println("searching files...")
-PMall_files = Potree.get_all_values(Ptrie)
-for f in PMall_files
-    println(f)
-end
-# println("creating point cloud...")
-# PPC = Potree.las2pointcloud(PMall_files...)
+println("creating point cloud for bin...")
+Vtot = Potree.bin2pointcloud(potreeBin)
 
-println(size(PMall_files)[1] == 71)
+Vtot2 = Potree.source2pc(potreeLas, -1)
 
-metadata = CloudMetadata(potree)
-println(metadata.boundingBox)
+println(Vtot == Vtot2.coordinates)
 
+# goodPoints = 0
 
-#  GL.VIEW(
-#       [
-#       Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
-#       ]
-#   ) 
+# for v in Vtot
+#     for vinner in Vtot2.coordinates
+#         if(v==vinner)
+#             splice(Vtot2.coordinates, vinner) 
+#             global goodPoints += 1
+#         end
+#     end
+# end
+
+println("Number of good points")
+println(goodPoints)
+println("Number of 1")
+println(size(Vtot))
+println("Number of 2")
+println(size(Vtot2.coordinates))
+ GL.VIEW(
+      [
+      Visualization.points(Vtot)
+      ]
+  ) 
+
+  GL.VIEW(
+    [
+    Visualization.points(Vtot2.coordinates)
+    ]
+) 
