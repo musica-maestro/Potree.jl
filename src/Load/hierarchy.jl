@@ -1,5 +1,5 @@
 """
-	potree2trie(potree::String)
+	potree2trie(potree::String) -> trie.children
 
 Trie data structures for Potree hierarchy:
  - each file in octree directory is stored in a node,
@@ -87,6 +87,8 @@ end
 
 # =====================
 """
+get_files_in_potree_folder(potree::String, LOD::Int, all_prev=true::Bool) -> Array{String,1}
+
 Return all files at that level of potree
 """
 function get_files_in_potree_folder(potree::String, LOD::Int, all_prev=true::Bool)::Array{String,1}
@@ -95,6 +97,8 @@ function get_files_in_potree_folder(potree::String, LOD::Int, all_prev=true::Boo
 end
 
 """
+get_files(trie::DataStructures.Trie{String}, LOD::Int, data=String[]::Array{String,1}, l = 0::Int, all_prev = true::Bool) -> Array{String,1}
+
 Accumulate all values from root to defined level `LOD`.
 """
 function get_files(trie::DataStructures.Trie{String}, LOD::Int, data=String[]::Array{String,1}, l = 0::Int, all_prev = true::Bool)::Array{String,1}
@@ -119,6 +123,12 @@ function get_files(trie::DataStructures.Trie{String}, LOD::Int, data=String[]::A
 	return data
 end
 
+
+"""
+readhrc(potree::String)
+
+Reads the hrc file of the potree
+"""
 function readhrc(potree::String)
 
 	cloudmetadata = CloudMetadata(potree) # useful parameters togli quelli che non usi
