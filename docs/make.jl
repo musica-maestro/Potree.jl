@@ -1,9 +1,10 @@
 using Documenter, Potree
 
 Documenter.makedocs(
+    format = Documenter.HTML(
+		prettyurls = get(ENV, "CI", nothing) == "true"
+	),
 sitename = "Potree.jl",
-repo = "https://github.com/musica-maestro/Potree.jl",
-authors = "Alessio Ferrato",
 pages = [
     "Home" => "index.md",
     "Load" => [
