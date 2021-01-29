@@ -1,3 +1,24 @@
-# bin.jl documentation
+# bin.jl
 
-This package provides just one macro, `@extract`, which you can use by entering:
+
+
+### Main Interface
+
+```@docs
+Potree.decodePoint
+```
+
+```@docs
+Potree.binToPointsUgly
+```
+
+```@docs
+Potree.bin2points
+```
+
+```@docs
+Potree.bin2rgb
+```
+```@docs
+Potree.bin2pointcloud
+```
