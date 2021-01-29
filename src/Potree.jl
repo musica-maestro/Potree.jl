@@ -25,6 +25,6 @@ module Potree
     include("Load/bin.jl")
 
     export potree2trie, las2pointcloud, DataStructures, LasIO, LazIO, JSON, getmodel, CloudMetadata,
-    HEADER_SIZE, DATA_OFFSET, SIZE_DATARECORD
+    HEADER_SIZE, DATA_OFFSET, SIZE_DATARECORD, bin2pointcloud, bin2pointcloudNoMultithreading
 
 end

@@ -10,7 +10,7 @@ potreeLas = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsLAS(v1.7)" # replac
 
 # potree source folder
 println("bin loading...")
-Vtot = Potree.bin2pointcloud(potreeBin)
+Vtot = Potree.bin2pointcloud($potreeBin)
 println("las loading...")
 Vtot2 = Potree.source2pc(potreeLas, -1)
 

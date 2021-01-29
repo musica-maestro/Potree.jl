@@ -8,7 +8,7 @@ using Profile
 # big files preferable
 #potree = "C:/Users/Alessio/Documents/potreeDirectory/pointclouds/CAVA" # replace this path with local potree directory
 potree = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsLAS(v1.7)"
-
+potreeBin = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsBIN(v1.7)"
 
 println("==============================================================================")
 println("@btime for FileManager: potree2triee, get_all_values, las2pointcloud")
