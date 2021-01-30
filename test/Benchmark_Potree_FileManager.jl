@@ -39,12 +39,12 @@ println("=======================================================================
 # Section used to check if there is any difference 
 # during the Visualization of the results
 
-# # point cloud
-# GL.VIEW(
-#     [
-#     Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
-#     ]
-# ) 
+# point cloud
+GL.VIEW(
+    [
+    Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
+    ]
+) 
 
 # # point cloud
 # GL.VIEW(

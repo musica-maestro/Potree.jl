@@ -12,6 +12,8 @@ pages = [
         "hierarchy.jl" => "hierarchy.md",
         "json.jl" => "json.md",
         "las.jl" => "las.md"
-        ]
+        ],
+    "struct.jl" => "struct.md",
+    "utilities.jl" => "utilities.md"
     ]
 )
