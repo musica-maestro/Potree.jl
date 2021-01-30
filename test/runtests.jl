@@ -21,81 +21,29 @@ totalNodes = 71 # aka number of files
 maxDepth = 3    # depth of the tree
 totalPoints = (3, 357003) # using that to check coordinates and rgbs ( 3 (xyz/rgb), 357003 (total points))
 boundingbox = (1.4770147800445557, -0.7153962850570679, -1.4153246879577637, 5.361339569091797, 3.1689285039901735, 2.4690001010894777)
+
 #las.jl testing
 
 @testset "las2pointcloud" begin
-    #@test size(Potree.las2pointcloud((Potree.get_all_values(Potree.potree2trie(potreeBIN)))...).coordinates) == totalPoints
     @test size(Potree.las2pointcloud((Potree.get_all_values(Potree.potree2trie(potreeLAS)))...).coordinates) == totalPoints
     @test size(Potree.las2pointcloud((Potree.get_all_values(Potree.potree2trie(potreeLAZ)))...).coordinates) == totalPoints
 
-    #@test size(Potree.las2pointcloud((Potree.get_all_values(Potree.potree2trie(potreeBIN)))...).rgbs) == totalPoints
     @test size(Potree.las2pointcloud((Potree.get_all_values(Potree.potree2trie(potreeLAS)))...).rgbs) == totalPoints
     @test size(Potree.las2pointcloud((Potree.get_all_values(Potree.potree2trie(potreeLAZ)))...).rgbs) == totalPoints
 end
 
 @testset "las2larpoints" begin
-    # troppi punti mutua uguaglianza
     @test (Potree.las2larpoints(oneNodeLAS)) == (Potree.las2larpoints(oneNodeLAZ))
     #@test (Potree.las2larpoints(oneNodeBIN)) == (Potree.las2larpoints(oneNodeLAZ))
     #@test (Potree.las2larpoints(oneNodeBIN)) == (Potree.las2larpoints(oneNodeLAS))
 end
 
-@testset "las2aabb" begin
-    # bounding box punto diverso da bounding potree?
-    # @test (Potree.las2aabb(oneNodeLAS)) == boundingbox
-    # questo forse si può checkare
-end
-
-@testset "las2color" begin
-    # Troppi punti mutua uguaglianza
-    # Potree.las2color(oneNodeLAS)
-end
-
-@testset "color" begin
-    # non serve
-end
-
-@testset "xyz" begin
-    # non serve
-end
-
-@testset "read_LAS_LAZ" begin
-    # check trasformation las to BIN?
-end
-
-
-#json.jl testing
-
-@testset "json2volume" begin
-    
-end
-
-@testset "json2LARvolume" begin
-    
-end
-
-@testset "json2ucs" begin
-    
-end
-
-@testset "seedPointsFromFile" begin
-    
-end
-
 #hierarchy.jl testing
-
-@testset "potree2trie" begin
-    #cosa restituisce?
-end
 
 @testset "max_depth" begin
     @test Potree.max_depth(Potree.potree2trie(potreeBIN)) == maxDepth
     @test Potree.max_depth(Potree.potree2trie(potreeLAS)) == maxDepth
     @test Potree.max_depth(Potree.potree2trie(potreeLAZ)) == maxDepth
-end
-
-@testset "cut_trie" begin
-    
 end
 
 # check if get_all_values reads all files and types
@@ -136,4 +84,16 @@ end
     @test size(Potree.get_files_in_potree_folder(potreeBIN, 3))[1] == totalNodes
     @test size(Potree.get_files_in_potree_folder(potreeLAS, 3))[1] == totalNodes
     @test size(Potree.get_files_in_potree_folder(potreeLAZ, 3))[1] == totalNodes
+end
+
+# bin.jl testing
+
+@testset "bin2pointcloud" begin
+
+    # !!! once you change bin2pointcloud you MUST change this test
+    # !!! not testing wheter the bin PC is the same as the LAS PC
+    # !!! not testing if the rgbs are good
+
+    @test (size(Potree.bin2pointcloud(potreeBIN)) == totalPoints)
+    @test (size(Potree.bin2pointcloudNoMultithreading(potreeBIN)) == totalPoints)
 end

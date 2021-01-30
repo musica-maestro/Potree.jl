@@ -40,11 +40,11 @@ println("=======================================================================
 # during the Visualization of the results
 
 # point cloud
-GL.VIEW(
-    [
-    Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
-    ]
-) 
+# GL.VIEW(
+#     [
+#     Visualization.points_color_from_rgb(PPC.coordinates,PPC.rgbs)
+#     ]
+# ) 
 
 # # point cloud
 # GL.VIEW(
