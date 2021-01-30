@@ -113,7 +113,7 @@ struct CloudMetadata
 
 end
 
-# struct potreeBin
+# struct CloudMetadata_2
 #     positionCartesian::Array{Float32, 3}
 #     colorPacked::Array{Int8, 4}
 #     #rgbPacked::Array{Int8, 3}
