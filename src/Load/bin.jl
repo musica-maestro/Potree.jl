@@ -80,7 +80,7 @@ function bin2rgb(fname::String)
 		g = parse(Int32, bitstring(UInt8(rawdata[14,i])))
 		b = parse(Int32, bitstring(UInt8(rawdata[15,i])))
 		a = parse(Int32, bitstring(UInt8(rawdata[16,i])))
-		allRGB = hcat(allPoints, vcat(r,g,b))
+		allRGB = hcat(allRGB, vcat(r,g,b))
 	end
 	return allRGB
 end
@@ -88,7 +88,7 @@ end
 """
 bin2pointcloud(source::String) ->  Array{Float64,2}(undef, 3, 0)
 
-TODO: check bin2rgbs
+TODO: check bin2rgb
 Returns a PointCloud without Point and Cloud... It's just an array of points
 """
 function bin2pointcloud(source::String)::Array{Float64,2}
@@ -104,10 +104,10 @@ function bin2pointcloud(source::String)::Array{Float64,2}
 
 	Threads.@threads for fname in all_files
 		partialV = bin2points(fname, cloud_metadata)
-		#partialRGB = bin2rgbs(fname)
+		partialRGB = bin2rgb(fname)
 		Threads.lock(l)
 		Vtot = hcat(Vtot, partialV)
-		#rgbtot = hcat(rgbtot, partialRGB)
+		rgbtot = hcat(rgbtot, partialRGB)
 		Threads.unlock(l)
 	end
 	return Vtot
@@ -116,7 +116,7 @@ end
 """
 bin2pointcloudNoMultithreading(source::String) ->  Array{Float64,2}(undef, 3, 0)
 
-TODO: check bin2rgbs
+TODO: check bin2rgb
 Returns a PointCloud without Point and Cloud... It's just an array of points
 """
 function bin2pointcloudNoMultithreading(source::String)::Array{Float64,2}
@@ -130,9 +130,9 @@ function bin2pointcloudNoMultithreading(source::String)::Array{Float64,2}
 	
 	for fname in all_files
 		partialV = bin2points(fname, cloud_metadata)
-		#partialRGB = bin2rgbs(fname)
+		partialRGB = bin2rgb(fname)
 		Vtot = hcat(Vtot, partialV)
-		#rgbtot = hcat(rgbtot, partialRGB)
+		rgbtot = hcat(rgbtot, partialRGB)
 	end
 	return Vtot
 end
