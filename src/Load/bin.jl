@@ -88,8 +88,8 @@ end
 """
 bin2pointcloud(source::String) ->  Array{Float64,2}(undef, 3, 0)
 
-TODO: check bin2rgb
-Returns a PointCloud without Point and Cloud... It's just an array of points
+TODO: check bin2rgb + create the PC
+Will return a PointCloud
 """
 function bin2pointcloud(source::String)::Array{Float64,2}
 	
@@ -116,8 +116,8 @@ end
 """
 bin2pointcloudNoMultithreading(source::String) ->  Array{Float64,2}(undef, 3, 0)
 
-TODO: check bin2rgb
-Returns a PointCloud without Point and Cloud... It's just an array of points
+TODO: check bin2rgb + create the PC
+Will return a PointCloud
 """
 function bin2pointcloudNoMultithreading(source::String)::Array{Float64,2}
 	
