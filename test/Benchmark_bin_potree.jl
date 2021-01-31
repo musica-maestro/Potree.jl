@@ -10,5 +10,7 @@ using Profile
 potree = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsLAS(v1.7)"
 potreeBin = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsBIN(v1.7)"
 
+println("@btime for bin2pointcloud WITHOUT Multithreading")
 @btime bin2pointcloudNoMultithreading($potreeBin)
+println("@btime for bin2pointcloud WITH Multithreading")
 @btime bin2pointcloud($potreeBin)
