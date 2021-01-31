@@ -9,17 +9,9 @@ This function is crucial because it reads the coordinates and rgbs of each point
 
 ## benchmarking
 
-Using a small file (357.003 points):
+357.003 points:
 ![Benchamrk_small.JPG](https://www.dropbox.com/s/fu2ootzevxjfndk/Benchamrk_small.JPG?dl=0&raw=1)
 ![Stairs.JPG](https://www.dropbox.com/s/uzt2u49g1deyajo/Stairs.JPG?dl=0&raw=1)
-
-! This potree is present in this package into potree folder
-
-
-
-Using a big file (14.027.872 points):
-
-! This potree is NOT present in this package into potree folder : [download](http://graphics.stanford.edu/data/3Dscanrep/lucy_scans.tar.gz)
 
 As you can see even if the allocation is bigger the computational time is ~60% less.
 
