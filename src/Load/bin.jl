@@ -61,6 +61,9 @@ function bin2points(fname::String, cloud_metadata::CloudMetadata)::Array{Float64
 	return allPoints
 end
 
+
+
+
 """
 bin2rgb(fname::String) -> {LasIO.N0f16,2}(undef, 3, 0)
 
@@ -135,4 +138,56 @@ function bin2pointcloudNoMultithreading(source::String)::Array{Float64,2}
 		rgbtot = hcat(rgbtot, partialRGB)
 	end
 	return Vtot
+end
+
+
+
+
+"""
+bin2parsing(fname::String) -> Array{Float64,2}(undef, 3, 0)
+
+Returns every point of the passed bin file.
+"""
+function binParsing(fname::String, cloud_metadata::CloudMetadata)
+	data = read(fname)
+	scale = cloud_metadata.scale
+	bb = cloud_metadata.boundingBox
+
+	allPoints = Array{Float64,2}(undef, 3, 0)
+	allRGB = Array{LasIO.N0f16,2}(undef, 3, 0)
+
+	io = open(fname, "r");
+
+	while !eof(io)
+		x = Int32(read(io, UInt32))
+		y = Int32(read(io, UInt32))
+		z = Int32(read(io, UInt32))
+		r = read(io, UInt8)
+		g = read(io, UInt8)
+		b = read(io, UInt8)
+		a = read(io, UInt8)
+		allPoints = hcat(allPoints, vcat(decodePoint(x, scale, bb.x_min),decodePoint(y, scale, bb.y_min),decodePoint(z, scale, bb.z_min)))
+		# allRGB = hcat(allRGB, vcat(r,g,b))
+	end
+
+	# return allPoints, allRGB
+	return allPoints
+end
+
+function bin2pointcloudNEW(source::String)::PointCloud
+	
+	cloud_metadata = Potree.CloudMetadata(source)
+	trie = Potree.potree2trie(source)
+	all_files = Potree.get_all_values(trie)
+
+	Vtot = Array{Float64,2}(undef, 3, 0)
+	rgbtot = Array{LasIO.N0f16,2}(undef, 3, 0)
+	
+	for fname in all_files
+		# partialV, partialRGB = binParsing(fname, cloud_metadata)
+		partialV = binParsing(fname, cloud_metadata)
+		Vtot = hcat(Vtot, partialV)
+		# rgbtot = hcat(rgbtot, partialRGB)
+	end
+	return PointCloud(Vtot)
 end

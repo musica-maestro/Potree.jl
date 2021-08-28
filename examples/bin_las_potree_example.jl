@@ -10,16 +10,18 @@ potreeLas = "C:/Users/Alessio/.julia/dev/Potree/potree/stairsLAS(v1.7)" # replac
 
 # potree source folder
 println("bin loading...")
-Vtot = Potree.bin2pointcloud($potreeBin)
+Vtot = Potree.bin2pointcloud(potreeBin)
 println("las loading...")
 Vtot2 = Potree.source2pc(potreeLas, -1)
 
-println("Same points?")
-println(Vtot == Vtot2.coordinates)
+println("las new loading...")
+Vtot3 = Potree.bin2pointcloudNEW(potreeBin)
+
+
 
 println("Same number of points?")
 println(size(Vtot)==size(Vtot2.coordinates))
-
+println(size(Vtot)==size(Vtot3.coordinates))
  GL.VIEW(
       [
       Visualization.points(Vtot)
@@ -30,4 +32,9 @@ println(size(Vtot)==size(Vtot2.coordinates))
     [
     Visualization.points(Vtot2.coordinates)
     ]
+) 
+GL.VIEW(
+  [
+  Visualization.points(Vtot3.coordinates)
+  ]
 ) 
